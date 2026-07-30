@@ -67,6 +67,12 @@ const createMember = async (req, res) => {
     // Create member
     const member = await Member.create(req.body);
 
+     res.status(201).json({
+      success: true,
+      message: "Member added successfully",
+      data: member,
+    });
+
     // Send welcome email (don't fail if email sending fails)
     if (member.email) {
       try {
@@ -115,11 +121,7 @@ const createMember = async (req, res) => {
       }
     }
 
-    res.status(201).json({
-      success: true,
-      message: "Member added successfully",
-      data: member,
-    });
+   
 
   } catch (error) {
     console.error("❌ Create Member Error:", error);
