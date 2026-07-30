@@ -4,7 +4,7 @@ const Member = {
   // Get all members
   getAll: async () => {
     const result = await pool.query(
-      "SELECT * FROM members ORDER BY id ASC"
+      "SELECT * FROM members ORDER BY id DESC"
     );
     return result.rows;
   },
