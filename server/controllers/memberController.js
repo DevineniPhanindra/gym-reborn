@@ -64,46 +64,55 @@ const getMember = async (req, res) => {
 // Create member
 const createMember = async (req, res) => {
   try {
+    // Create member
     const member = await Member.create(req.body);
 
-    // Send welcome email (only if email exists)
+    // Send welcome email (don't fail if email sending fails)
     if (member.email) {
-      await sendEmail(
-        member.email,
-        "Welcome to Gym Reborn",
-        `
-        <h2>Welcome ${member.name}!</h2>
+      try {
+        await sendEmail(
+          member.email,
+          "Welcome to Gym Reborn",
+          `
+          <h2>Welcome ${member.name}!</h2>
 
-        <p>Your membership has been created successfully.</p>
+          <p>Your membership has been created successfully.</p>
 
-        <table border="1" cellpadding="8" cellspacing="0">
-          <tr>
-            <td><b>Member ID</b></td>
-            <td>${member.id}</td>
-          </tr>
+          <table border="1" cellpadding="8" cellspacing="0">
+            <tr>
+              <td><b>Member ID</b></td>
+              <td>${member.id}</td>
+            </tr>
 
-          <tr>
-            <td><b>Name</b></td>
-            <td>${member.name}</td>
-          </tr>
+            <tr>
+              <td><b>Name</b></td>
+              <td>${member.name}</td>
+            </tr>
 
-          <tr>
-            <td><b>Membership Start</b></td>
-            <td>${member.membership_start_date}</td>
-          </tr>
+            <tr>
+              <td><b>Membership Start</b></td>
+              <td>${member.membership_start_date}</td>
+            </tr>
 
-          <tr>
-            <td><b>Membership End</b></td>
-            <td>${member.membership_end_date}</td>
-          </tr>
-        </table>
+            <tr>
+              <td><b>Membership End</b></td>
+              <td>${member.membership_end_date}</td>
+            </tr>
+          </table>
 
-        <br/>
+          <br/>
 
-        <p>Thank you for joining <b>Gym Reborn</b>.</p>
-        <p>We wish you a healthy fitness journey!</p>
-        `
-      );
+          <p>Thank you for joining <b>Gym Reborn</b>.</p>
+          <p>We wish you a healthy fitness journey!</p>
+          `
+        );
+
+        console.log("✅ Welcome email sent successfully");
+
+      } catch (emailError) {
+        console.error("❌ Email sending failed:", emailError.message);
+        // Don't throw the error
+      }
     }
 
     res.status(201).json({
@@ -113,11 +122,12 @@ const createMember = async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error);
+    console.error("❌ Create Member Error:", error);
 
     res.status(500).json({
       success: false,
-      message: error.message,
+      message: "Failed to add member",
+      error: error.message,
     });
   }
 };
@@ -133,9 +143,12 @@ const updateMember = async (req, res) => {
       data: member,
     });
   } catch (error) {
+    console.error("❌ Update Member Error:", error);
+
     res.status(500).json({
       success: false,
-      message: error.message,
+      message: "Failed to update member",
+      error: error.message,
     });
   }
 };
@@ -150,9 +163,12 @@ const deleteMember = async (req, res) => {
       message: "Member deleted successfully",
     });
   } catch (error) {
+    console.error("❌ Delete Member Error:", error);
+
     res.status(500).json({
       success: false,
-      message: error.message,
+      message: "Failed to delete member",
+      error: error.message,
     });
   }
 };
@@ -173,9 +189,12 @@ const renewMember = async (req, res) => {
       data: member,
     });
   } catch (error) {
+    console.error("❌ Renew Membership Error:", error);
+
     res.status(500).json({
       success: false,
-      message: error.message,
+      message: "Failed to renew membership",
+      error: error.message,
     });
   }
 };
@@ -190,11 +209,12 @@ const getExpiringMembers = async (req, res) => {
       data: members,
     });
   } catch (error) {
-    console.error(error);
+    console.error("❌ Get Expiring Members Error:", error);
 
     res.status(500).json({
       success: false,
       message: "Failed to fetch expiring members",
+      error: error.message,
     });
   }
 };
