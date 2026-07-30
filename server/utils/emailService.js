@@ -10,6 +10,15 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+//transporter for sending emails
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("SMTP Error:", error);
+  } else {
+    console.log("SMTP Server is ready");
+  }
+});
+
 const sendEmail = async (to, subject, html) => {
   await transporter.sendMail({
     from: `"Gym Reborn" <${process.env.EMAIL_USER}>`,
