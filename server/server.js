@@ -12,6 +12,15 @@ const memberRoutes = require("./routes/memberRoutes");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+//transporter for sending emails
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("SMTP Error:", error);
+  } else {
+    console.log("SMTP Server is ready");
+  }
+});
+
 // CORS Configuration
 app.use(
   cors({
