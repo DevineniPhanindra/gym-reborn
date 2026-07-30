@@ -1,0 +1,168 @@
+.topbar{
+    height:70px;
+    background:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 24px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.topbar-title{
+    margin:0;
+    font-size:36px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.reborn{
+    background:linear-gradient(
+        180deg,
+        #FFE88A,
+        #F5D36B,
+        #D7A93B,
+        #A86E19
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+
+    text-shadow:0 2px 4px rgba(0,0,0,.2);
+}
+
+.fitness{
+    background:linear-gradient(
+        180deg,
+        #6FE7FF,
+        #38BDF8,
+        #0EA5E9,
+        #0284C7
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+
+    text-shadow:0 2px 4px rgba(0,0,0,.2);
+}
+
+/* Left */
+
+.topbar-left{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+/* Menu Button */
+
+.menu-btn{
+    display:none;
+    border:none;
+    background:none;
+    font-size:28px;
+    cursor:pointer;
+    color:#111827;
+}
+
+/* Search */
+
+.search-box{
+    position:relative;
+    width:320px;
+}
+
+.search-box input{
+    width:100%;
+    height:46px;
+    border:1px solid #E5E7EB;
+    border-radius:12px;
+    background:#F9FAFB;
+    outline:none;
+    padding:0 16px 0 45px;
+    font-size:15px;
+    color:#111827;
+}
+
+.search-box input::placeholder{
+    color:#9CA3AF;
+}
+
+.search-box i{
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#9CA3AF;
+    font-size:16px;
+    pointer-events:none;
+}
+
+/* Right */
+
+.topbar-right{
+    display:flex;
+    align-items:center;
+}
+
+.admin{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.admin img{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+}
+
+.admin h6{
+    margin:0;
+    font-size:15px;
+    font-weight:600;
+}
+
+.admin small{
+    color:#6B7280;
+    font-size:13px;
+}
+
+.admin-info{
+    display:flex;
+    flex-direction:column;
+}
+
+/* Tablet */
+
+@media (max-width:992px){
+
+    .menu-btn{
+        display:block;
+    }
+
+    .search-box{
+        width:220px;
+    }
+
+}
+
+/* Mobile */
+
+@media (max-width:576px){
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .search-box{
+        width:160px;
+    }
+
+    .admin-info{
+        display:none;
+    }
+
+}

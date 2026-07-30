@@ -1,0 +1,40 @@
+.layout{
+    display:flex;
+}
+
+.main-content{
+    margin-left:260px;
+    min-height:100vh;
+    width:calc(100% - 260px);
+    background:#F3F4F6;
+    transition:all .3s ease;
+}
+
+.content{
+    padding:24px;
+}
+
+/* Tablet */
+
+@media (max-width:992px){
+
+.main-content{
+    margin-left:0;
+    width:100%;
+}
+
+.content{
+    padding:18px;
+}
+
+}
+
+/* Mobile */
+
+@media (max-width:576px){
+
+.content{
+    padding:12px;
+}
+
+}

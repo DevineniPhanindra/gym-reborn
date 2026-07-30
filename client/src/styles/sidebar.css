@@ -1,0 +1,304 @@
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:270px;
+    height:100vh;
+
+    background:#111827;
+    color:#fff;
+
+    display:flex;
+    flex-direction:column;
+
+    padding:18px;
+
+
+    box-sizing:border-box;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-section{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-bottom:28px;
+}
+
+.logo-icon{
+    width:46px;
+    height:46px;
+
+    border-radius:14px;
+
+    background:#4F46E5;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:20px;
+}
+
+.logo-section h4{
+    margin:0;
+    font-size:16px;
+    font-weight:700;
+}
+
+.logo-section span{
+    display:block;
+    margin-top:2px;
+
+    color:#9CA3AF;
+    font-size:12px;
+}
+
+/* =========================
+   USER CARD
+========================= */
+
+.user-card{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    background:#1F2937;
+
+    padding:12px;
+
+    border-radius:14px;
+
+    margin-bottom:30px;
+}
+
+.user-avatar{
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    background:#4F46E5;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:16px;
+    font-weight:600;
+}
+
+.user-card h6{
+
+    margin:0;
+    font-size:16px;
+    font-weight:600;
+}
+
+.user-card small{
+
+    display:block;
+    margin-top:3px;
+
+    color:#9CA3AF;
+    font-size:12px;
+}
+
+/* =========================
+   MENU TITLE
+========================= */
+
+.menu-title{
+
+    color:#6B7280;
+
+    font-size:11px;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+
+    margin-bottom:12px;
+}
+
+/* =========================
+   MENU LINKS
+========================= */
+
+.menu{
+
+    display:flex;
+    flex-direction:column;
+}
+
+.menu-link{
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px 14px;
+
+    margin-bottom:4px;
+
+    border-radius:12px;
+
+    color:#94A3B8;
+
+    font-size:15px;
+    font-weight:500;
+
+    text-decoration:none;
+
+    transition:all .2s ease;
+}
+
+.menu-link svg{
+    font-size:18px;
+}
+
+.menu-link:hover{
+
+    color:#fff;
+
+    background:rgba(255,255,255,.05);
+}
+
+.menu-link.active{
+
+    background:rgba(79,70,229,.18);
+
+    color:#C7D2FE;
+}
+
+/* =========================
+   LOGOUT
+========================= */
+
+.logout-btn{
+
+    margin-top:auto;
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    border:none;
+
+    background:transparent;
+
+    color:#D1D5DB;
+
+    padding:12px 14px;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.logout-btn:hover{
+
+    background:#EF4444;
+
+    color:#fff;
+}
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+
+.close-btn{
+
+    display:none;
+
+    position:absolute;
+
+    top:18px;
+    right:18px;
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:22px;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.sidebar-overlay{
+    display:none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width:992px){
+
+.sidebar{
+
+    left:-270px;
+
+    transition:left .3s ease;
+
+    z-index:1000;
+}
+
+.sidebar.show{
+    left:0;
+}
+
+.close-btn{
+    display:block;
+}
+
+.sidebar-overlay{
+
+    display:block;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:999;
+}
+
+.sidebar-overlay.show{
+
+    opacity:1;
+
+    visibility:visible;
+}
+
+}

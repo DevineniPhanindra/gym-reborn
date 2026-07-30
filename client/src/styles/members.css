@@ -1,0 +1,99 @@
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.page-title h2{
+    font-weight:700;
+    margin-bottom:4px;
+}
+
+.page-title p{
+    color:#6B7280;
+    margin:0;
+}
+
+.toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    gap:15px;
+}
+
+.search-box{
+    position:relative;
+    width:320px;
+}
+
+.search-box input{
+    width:100%;
+    padding:10px 15px 10px 40px;
+    border:1px solid #E5E7EB;
+    border-radius:12px;
+    background:white;
+}
+
+.search-box i{
+    position:absolute;
+    left:14px;
+    top:22px;
+    color:#9CA3AF;
+}
+
+.table-card{
+    background:white;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.table thead{
+    background:#F9FAFB;
+}
+
+.table th{
+    font-weight:600;
+    color:#6B7280;
+}
+
+.table td{
+    vertical-align:middle;
+}
+
+.member-avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#4F46E5;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:600;
+}
+
+.member-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.action-btn{
+    width:36px;
+    height:36px;
+    border:none;
+    border-radius:10px;
+}
+
+.action-edit{
+    background:#EEF2FF;
+    color:#4F46E5;
+}
+
+.action-delete{
+    background:#FEF2F2;
+    color:#DC2626;
+}
