@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
-
+const cors = require("cors");
 
 require("./jobs/membershipReminder");
 
@@ -12,8 +12,7 @@ const memberRoutes = require("./routes/memberRoutes");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const cors = require("cors");
-
+// CORS Configuration
 app.use(
   cors({
     origin: [
@@ -25,20 +24,31 @@ app.use(
   })
 );
 
-app.options("*", cors());
+// Middleware
 app.use(express.json());
 
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/members", memberRoutes);
 
+// Health Check
 app.get("/", (req, res) => {
-  res.send("Gym Reborn API is Running 🚀");
+  res.status(200).json({
+    success: true,
+    message: "Gym Reborn API is Running 🚀",
+  });
 });
 
+// Database Connection
 pool.connect()
-  .then(() => console.log("✅ PostgreSQL Connected"))
-  .catch((err) => console.log(err.message));
+  .then(() => {
+    console.log("✅ PostgreSQL Connected");
+  })
+  .catch((err) => {
+    console.error("❌ Database Connection Error:", err.message);
+  });
 
+// Start Server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
