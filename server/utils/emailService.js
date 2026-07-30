@@ -1,33 +1,39 @@
-const nodemailer = require("nodemailer");
-
-const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-});
-
-//transporter for sending emails
-transporter.verify((error, success) => {
-  if (error) {
-    console.error("SMTP Error:", error);
-  } else {
-    console.log("SMTP Server is ready");
-  }
-});
+const axios = require("axios");
 
 const sendEmail = async (to, subject, html) => {
-  await transporter.sendMail({
-    from: `"Gym Reborn" <${process.env.EMAIL_USER}>`,
-    to,
-    subject,
-    html,
-  });
+  try {
+    const response = await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          name: "Gym Reborn",
+          email: process.env.SENDER_EMAIL, // Verified sender email
+        },
+        to: [
+          {
+            email: to,
+          },
+        ],
+        subject: subject,
+        htmlContent: html,
+      },
+      {
+        headers: {
+          "api-key": process.env.BREVO_API_KEY,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+
+    console.log("✅ Email sent:", response.data);
+  } catch (err) {
+    console.error(
+      "❌ Brevo Error:",
+      err.response?.data || err.message
+    );
+    throw err;
+  }
 };
 
 module.exports = { sendEmail };
