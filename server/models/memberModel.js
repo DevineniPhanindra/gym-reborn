@@ -181,6 +181,15 @@ getReminderMembers: async () => {
 
   return result.rows;
 },
+ // Check if email already exists
+emailExists: async (email) => {
+  const result = await pool.query(
+    "SELECT id FROM members WHERE email = $1",
+    [email]
+  );
+
+  return result.rows.length > 0;
+},
 
   markReminderSent: async (id) => {
     await pool.query(
