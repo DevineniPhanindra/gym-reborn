@@ -79,6 +79,15 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             Add Member
           </NavLink>
 
+          <NavLink
+  to="/change-password"
+  className="menu-link"
+  onClick={closeSidebar}
+>
+  <i className="bi bi-key"></i>
+  Change Password
+</NavLink>
+
         </nav>
 
         {/* Logout */}
