@@ -4,7 +4,7 @@ const { sendEmail } = require("../utils/emailService");
 
 // Runs every day at 9:00 AM IST
 cron.schedule(
-  "0 9 * * *",
+  "34 4 * * *",
   async () => {
     console.log("Checking expiring memberships...");
 
