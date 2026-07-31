@@ -199,18 +199,15 @@ function Members() {
 
                         </td>
 
-                        <td>
-
-                          <span
-                            className={`badge ${member.status === "Active"
-                                ? "bg-success"
-                                : "bg-danger"
-                              }`}
-                          >
-                            {member.status}
-                          </span>
-
-                        </td>
+                       <td>
+  <span
+    className={`badge ${
+      days >= 0 ? "bg-success" : "bg-danger"
+    }`}
+  >
+    {days >= 0 ? "Active" : "Expired"}
+  </span>
+</td>
 
                         <td>
 
