@@ -21,6 +21,19 @@ const User = {
 
     return result.rows[0];
   },
+
+  changePassword: async (id, newPassword) => {
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    await pool.query(
+      `
+      UPDATE users
+      SET password = $1
+      WHERE id = $2
+      `,
+      [hashedPassword, id]
+    );
+  },
 };
 
 module.exports = User;
