@@ -33,6 +33,8 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/members", memberRoutes);
 
+console.log("Server time:", new Date().toString());
+
 // Health Check
 app.get("/", (req, res) => {
   res.status(200).json({
