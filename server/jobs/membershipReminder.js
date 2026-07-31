@@ -5,7 +5,7 @@ const { sendEmail } = require("../utils/emailService");
 console.log("✅ Membership reminder cron initialized.");
 
 // Runs every day at 9:15 AM
-cron.schedule("* * * * *", async () => {
+cron.schedule("30 9 * * *", async () => {
   console.log("Checking expiring memberships...");
 
   try {
