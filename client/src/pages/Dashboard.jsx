@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import Layout from "../components/Layout";
 import DashboardCard from "../components/DashboardCard";
+import { useNavigate } from "react-router-dom";
 
 import "../styles/dashboard.css";
 
@@ -14,6 +15,7 @@ function Dashboard() {
   });
 
   const [expiringMembers, setExpiringMembers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchDashboard();
@@ -41,32 +43,36 @@ function Dashboard() {
     return Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
   };
 
-  const cards = [
-    {
-      title: "Total Members",
-      value: stats.total_members,
-      icon: "bi-people-fill",
-      color: "#4F46E5",
-    },
-    {
-      title: "Active Members",
-      value: stats.active_members,
-      icon: "bi-person-check-fill",
-      color: "#22C55E",
-    },
-    {
-      title: "Expired Members",
-      value: stats.expired_members,
-      icon: "bi-person-x-fill",
-      color: "#EF4444",
-    },
-    {
-      title: "Expiring Soon",
-      value: stats.expiring_soon,
-      icon: "bi-clock-history",
-      color: "#F59E0B",
-    },
-  ];
+ const cards = [
+  {
+    title: "Total Members",
+    value: stats.total_members,
+    icon: "bi-people-fill",
+    color: "#4F46E5",
+    filter: "",
+  },
+  {
+    title: "Active Members",
+    value: stats.active_members,
+    icon: "bi-person-check-fill",
+    color: "#22C55E",
+    filter: "active",
+  },
+  {
+    title: "Expired Members",
+    value: stats.expired_members,
+    icon: "bi-person-x-fill",
+    color: "#EF4444",
+    filter: "expired",
+  },
+  {
+    title: "Expiring Soon",
+    value: stats.expiring_soon,
+    icon: "bi-clock-history",
+    color: "#F59E0B",
+    filter: "expiring",
+  },
+];
 
   return (
     <Layout>
@@ -81,14 +87,25 @@ function Dashboard() {
       {/* Stats Cards */}
       <div className="stats-grid mb-4">
         {cards.map((card) => (
-          <DashboardCard
-            key={card.title}
-            title={card.title}
-            value={card.value}
-            icon={card.icon}
-            color={card.color}
-          />
-        ))}
+  <div
+    key={card.title}
+    style={{ cursor: "pointer" }}
+    onClick={() =>
+      navigate(
+        card.filter
+          ? `/members?filter=${card.filter}`
+          : "/members"
+      )
+    }
+  >
+    <DashboardCard
+      title={card.title}
+      value={card.value}
+      icon={card.icon}
+      color={card.color}
+    />
+  </div>
+))}
       </div>
 
       {/* Expiring Members */}
