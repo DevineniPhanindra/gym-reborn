@@ -64,16 +64,27 @@ const getMember = async (req, res) => {
 // Create member
 const createMember = async (req, res) => {
   try {
+
+    // Check duplicate email
+    const emailExists = await Member.emailExists(req.body.email);
+
+    if (emailExists) {
+      return res.status(400).json({
+        success: false,
+        message: "Email already exists."
+      });
+    }
+
     // Create member
     const member = await Member.create(req.body);
 
-     res.status(201).json({
+    res.status(201).json({
       success: true,
       message: "Member added successfully",
       data: member,
     });
 
-    // Send welcome email (don't fail if email sending fails)
+    // Send welcome email
     if (member.email) {
       try {
         await sendEmail(
@@ -117,14 +128,19 @@ const createMember = async (req, res) => {
 
       } catch (emailError) {
         console.error("❌ Email sending failed:", emailError.message);
-        // Don't throw the error
       }
     }
 
-   
-
   } catch (error) {
+
     console.error("❌ Create Member Error:", error);
+
+    if (error.code === "23505") {
+      return res.status(400).json({
+        success: false,
+        message: "Email already exists."
+      });
+    }
 
     res.status(500).json({
       success: false,
@@ -137,6 +153,7 @@ const createMember = async (req, res) => {
 // Update member
 const updateMember = async (req, res) => {
   try {
+
     const member = await Member.update(req.params.id, req.body);
 
     res.status(200).json({
@@ -144,8 +161,17 @@ const updateMember = async (req, res) => {
       message: "Member updated successfully",
       data: member,
     });
+
   } catch (error) {
+
     console.error("❌ Update Member Error:", error);
+
+    if (error.code === "23505") {
+      return res.status(400).json({
+        success: false,
+        message: "Email already exists."
+      });
+    }
 
     res.status(500).json({
       success: false,
