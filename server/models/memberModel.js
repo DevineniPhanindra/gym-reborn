@@ -116,19 +116,20 @@ const Member = {
   },
 
   // Renew membership
-  renew: async (id, endDate) => {
-    const result = await pool.query(
-      `UPDATE members
-       SET membership_end_date=$1,
-           status='Active',
-           updated_at=NOW()
-       WHERE id=$2
-       RETURNING *`,
-      [endDate, id]
-    );
+ renew: async (id, endDate) => {
+  const result = await pool.query(
+    `UPDATE members
+     SET membership_end_date=$1,
+         status='Active',
+         reminder_sent = FALSE,
+         updated_at=NOW()
+     WHERE id=$2
+     RETURNING *`,
+    [endDate, id]
+  );
 
-    return result.rows[0];
-  },
+  return result.rows[0];
+},
 
   // Dashboard Statistics
   getStats: async () => {
