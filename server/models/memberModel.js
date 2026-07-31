@@ -191,6 +191,18 @@ emailExists: async (email) => {
   return result.rows.length > 0;
 },
 
+  emailExistsForOtherMember: async (email, id) => {
+  const result = await pool.query(
+    `SELECT id
+     FROM members
+     WHERE email = $1
+     AND id <> $2`,
+    [email, id]
+  );
+
+  return result.rows.length > 0;
+},
+
   markReminderSent: async (id) => {
     await pool.query(
       `
