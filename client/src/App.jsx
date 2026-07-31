@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import Members from "./pages/Members";
 import AddMember from "./pages/AddMember";
 import EditMember from "./pages/EditMember";
+import ChangePassword from "./pages/ChangePassword";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/members" element={<Members />} />
         <Route path="/members/add" element={<AddMember />} />
         <Route path="/members/edit/:id" element={<EditMember />} />
+        <Route path="/change-password" element={<ChangePassword />} />
       </Routes>
     </BrowserRouter>
   );
