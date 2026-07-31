@@ -2,6 +2,8 @@ const cron = require("node-cron");
 const Member = require("../models/memberModel");
 const { sendEmail } = require("../utils/emailService");
 
+console.log("✅ Membership reminder cron initialized.");
+
 // Runs every day at 9:15 AM
 cron.schedule("15 9 * * *", async () => {
   console.log("Checking expiring memberships...");
