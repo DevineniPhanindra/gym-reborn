@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import "../styles/members.css";
 
 function Members() {
-  const [members, setMembers] = useState([]);
-  const [search, setSearch] = useState("");
+const [members, setMembers] = useState([]);
+const [search, setSearch] = useState("");
+
+const [searchParams] = useSearchParams();
+const filter = searchParams.get("filter");
 
   useEffect(() => {
     fetchMembers();
@@ -44,16 +47,32 @@ function Members() {
   };
 
   const filteredMembers = members.filter((member) => {
-    const query = search.toLowerCase().trim();
+  const query = search.toLowerCase().trim();
 
-    return (
-      member.name?.toLowerCase().includes(query) ||
-      member.phone?.toLowerCase().includes(query) ||
-      member.email?.toLowerCase().includes(query) ||
-      member.status?.toLowerCase().includes(query) ||
-      member.id?.toString().includes(query)
-    );
-  });
+  const days = getRemainingDays(member.membership_end_date);
+
+  const matchesSearch =
+    member.name?.toLowerCase().includes(query) ||
+    member.phone?.toLowerCase().includes(query) ||
+    member.email?.toLowerCase().includes(query) ||
+    member.id?.toString().includes(query);
+
+  if (!matchesSearch) return false;
+
+  switch (filter) {
+    case "active":
+      return days >= 0;
+
+    case "expired":
+      return days < 0;
+
+    case "expiring":
+      return days >= 0 && days <= 7;
+
+    default:
+      return true;
+  }
+});
 
   return (
     <Layout>
