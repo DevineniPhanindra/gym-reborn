@@ -8,7 +8,7 @@ function Home() {
       <nav className="navbar">
 
         <div className="logo">
-          🏋️ Gym Reborn
+          🏋️ Reborn Fitness
         </div>
 
         <Link
@@ -92,7 +92,7 @@ function Home() {
 
       <footer>
 
-        © 2026 Gym Reborn
+        © 2026 Reborn Fitness
 
       </footer>
 
