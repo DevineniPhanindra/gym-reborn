@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import api from "../services/api";
 import "../styles/login.css";
 
@@ -9,9 +8,7 @@ function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const [showPassword, setShowPassword] = useState(false);
-
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
@@ -33,14 +30,11 @@ function Login() {
       localStorage.setItem("token", res.data.token);
 
       navigate("/dashboard");
-
     } catch (err) {
-
       alert(
         err.response?.data?.message ||
-        "Invalid username or password"
+          "Invalid username or password"
       );
-
     } finally {
       setLoading(false);
     }
@@ -57,7 +51,7 @@ function Login() {
 
           <img
             src="/favcon.png"
-            alt="logo"
+            alt="Reborn Fitness"
             className="brand-logo"
           />
 
@@ -105,7 +99,7 @@ function Login() {
             to="/"
             className="back-home"
           >
-            <ArrowLeft size={18} />
+            <i className="bi bi-arrow-left me-2"></i>
             Back to Home
           </Link>
 
@@ -125,9 +119,7 @@ function Login() {
                 type="text"
                 placeholder="Enter username"
                 value={username}
-                onChange={(e) =>
-                  setUsername(e.target.value)
-                }
+                onChange={(e) => setUsername(e.target.value)}
               />
 
             </div>
@@ -139,30 +131,26 @@ function Login() {
               <div className="password-box">
 
                 <input
-                  type={
-                    showPassword
-                      ? "text"
-                      : "password"
-                  }
+                  type={showPassword ? "text" : "password"}
                   placeholder="Enter password"
                   value={password}
-                  onChange={(e) =>
-                    setPassword(e.target.value)
-                  }
+                  onChange={(e) => setPassword(e.target.value)}
                 />
 
                 <button
                   type="button"
                   className="eye-btn"
                   onClick={() =>
-                    setShowPassword(
-                      !showPassword
-                    )
+                    setShowPassword(!showPassword)
                   }
                 >
-                  {showPassword
-                    ? <EyeOff size={20} />
-                    : <Eye size={20} />}
+                  <i
+                    className={`bi ${
+                      showPassword
+                        ? "bi-eye-slash-fill"
+                        : "bi-eye-fill"
+                    }`}
+                  ></i>
                 </button>
 
               </div>
@@ -170,12 +158,11 @@ function Login() {
             </div>
 
             <button
+              type="submit"
               className="login-btn"
               disabled={loading}
             >
-              {loading
-                ? "Signing In..."
-                : "Login"}
+              {loading ? "Signing In..." : "Login"}
             </button>
 
           </form>
