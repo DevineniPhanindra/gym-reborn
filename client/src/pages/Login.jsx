@@ -49,11 +49,7 @@ function Login() {
 
         <div className="brand">
 
-          <img
-            src="/favcon.png"
-            alt="Reborn Fitness"
-            className="brand-logo"
-          />
+          
 
           <h1>REBORN FITNESS</h1>
 
@@ -159,7 +155,7 @@ function Login() {
 
             <button
               type="submit"
-              className="login-btn"
+              className="admin-login-btn"
               disabled={loading}
             >
               {loading ? "Signing In..." : "Login"}
