@@ -32,7 +32,7 @@ body{
 
     background:
     linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-    url("/gym.jpg");
+    url("/gym.png");
 
     background-size:cover;
     background-position:center;
