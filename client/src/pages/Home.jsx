@@ -25,7 +25,7 @@ function Home() {
         <div className="overlay">
 
           <h1>
-            Smart Gym Management
+            Reborn Fitness Management
           </h1>
 
           <p>
@@ -92,7 +92,7 @@ function Home() {
   <h2>Contact Us</h2>
 
   <p className="contact-subtitle">
-    Interested in Gym Reborn? Let's discuss how it can help your gym.
+    Interested in Gym Fitness? Let's discuss how it can help you.
   </p>
 
   <div className="contact-grid">
