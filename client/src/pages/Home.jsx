@@ -92,7 +92,7 @@ function Home() {
   <h2>Contact Us</h2>
 
   <p className="contact-subtitle">
-    Interested in Gym Reborn? Get in touch with us.
+    Interested in Gym Reborn? Let's discuss how it can help your gym.
   </p>
 
   <div className="contact-grid">
@@ -100,31 +100,31 @@ function Home() {
     <div className="contact-card">
       <i className="bi bi-telephone-fill"></i>
       <h4>Phone</h4>
-      <p>+91 XXXXXXXXXX</p>
+      <p>+91 79954 09742</p>
+    </div>
+
+    <div className="contact-card">
+      <i className="bi bi-whatsapp"></i>
+      <h4>WhatsApp</h4>
+      <p>+91 79954 09742</p>
     </div>
 
     <div className="contact-card">
       <i className="bi bi-envelope-fill"></i>
       <h4>Email</h4>
-      <p>your@email.com</p>
-    </div>
-
-    <div className="contact-card">
-      <i className="bi bi-geo-alt-fill"></i>
-      <h4>Location</h4>
-      <p>Vijayawada, Andhra Pradesh</p>
+      <p>phanindra.devineni869@gmail.com</p>
     </div>
 
   </div>
 
   <a
-    href="https://wa.me/91XXXXXXXXXX"
+    href="https://wa.me/917995409742"
     target="_blank"
     rel="noreferrer"
     className="whatsapp-btn"
   >
-    <i className="bi bi-whatsapp"></i>
-    Contact on WhatsApp
+    <i className="bi bi-whatsapp me-2"></i>
+    Chat on WhatsApp
   </a>
 
 </section>
