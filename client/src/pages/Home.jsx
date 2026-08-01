@@ -87,6 +87,47 @@ function Home() {
           </div>
 
         </div>
+        <section id="contact" className="contact">
+
+  <h2>Contact Us</h2>
+
+  <p className="contact-subtitle">
+    Interested in Gym Reborn? Get in touch with us.
+  </p>
+
+  <div className="contact-grid">
+
+    <div className="contact-card">
+      <i className="bi bi-telephone-fill"></i>
+      <h4>Phone</h4>
+      <p>+91 XXXXXXXXXX</p>
+    </div>
+
+    <div className="contact-card">
+      <i className="bi bi-envelope-fill"></i>
+      <h4>Email</h4>
+      <p>your@email.com</p>
+    </div>
+
+    <div className="contact-card">
+      <i className="bi bi-geo-alt-fill"></i>
+      <h4>Location</h4>
+      <p>Vijayawada, Andhra Pradesh</p>
+    </div>
+
+  </div>
+
+  <a
+    href="https://wa.me/91XXXXXXXXXX"
+    target="_blank"
+    rel="noreferrer"
+    className="whatsapp-btn"
+  >
+    <i className="bi bi-whatsapp"></i>
+    Contact on WhatsApp
+  </a>
+
+</section>
 
       </section>
 
